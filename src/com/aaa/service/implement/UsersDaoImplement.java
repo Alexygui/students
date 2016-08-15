@@ -14,7 +14,7 @@ import com.aaa.service.UsersDao;
 /**
  * 用户实体类，查询登录用户是否存在
  */
-public class UsersDaoImplement implements UsersDao{
+public class UsersDaoImplement implements UsersDao {
 
 	@Override
 	public boolean usersLogin(Users user) {
@@ -29,17 +29,17 @@ public class UsersDaoImplement implements UsersDao{
 			query.setParameter(1, user.getPassword());
 			List userList = query.list();
 			transaction.commit();
-			if(userList.size() > 0) {
+			if (userList.size() > 0) {
 				return true;
 			} else {
 				return false;
 			}
-		}catch(HibernateException e) {
+		} catch (HibernateException e) {
 			e.printStackTrace();
 			return false;
-		}finally {
-			if(transaction != null) {
-				//transaction.commit();
+		} finally {
+			if (transaction != null) {
+				// transaction.commit();
 				transaction = null;
 			}
 		}
