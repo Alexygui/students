@@ -7,7 +7,14 @@
 
     <package name="default" namespace="/" extends="struts-default">
 
-      
     </package>
+
+	<package name="users" namespace="/users" extends="default">
+		<action name="*_*" class="com.aaa.action.{1}Action" method="{2}">
+			<result name="login_success">/users/Users_login_success.jsp</result>
+			<result name="login_failure">/users/Users_login.jsp</result>
+		</action>
+	</package>
+
 
 </struts>
