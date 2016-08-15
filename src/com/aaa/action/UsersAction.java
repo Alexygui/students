@@ -15,6 +15,8 @@ public class UsersAction extends SuperAction implements ModelDriven<Users>{
 	public String login() {
 		UsersDao usersDao = new UsersDaoImplement();
 		if(usersDao.usersLogin(user)) {
+			//在session中保存登录成功的用户名
+			session.setAttribute("loginUserName", user.getUsername());
 			return "login_success";
 		} else {
 			return "login_failure";
@@ -26,4 +28,11 @@ public class UsersAction extends SuperAction implements ModelDriven<Users>{
 		return user;
 	}
 
+	//用户注销方法
+	public String logout() {
+		if(session.getAttribute("loginUserName") != null) {
+			session.removeAttribute("loginUserName");
+		}
+		return "logout_success";
+	}
 }
