@@ -47,5 +47,10 @@ public class Students {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	@Override
+	public String toString() {
+		return "Students [sid=" + sid + ", name=" + name + ", gender=" + gender + ", birthday=" + birthday
+				+ ", address=" + address + "]";
+	}
 	
 }

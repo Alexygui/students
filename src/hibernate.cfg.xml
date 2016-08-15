@@ -7,7 +7,7 @@
 		<property name="connection.username">root</property>
 		<property name="connection.password">123456</property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql:///test?useUnicode=true&amp;characterEncoding=utf-8</property>
+		<property name="connection.url">jdbc:mysql:///test?useUnicode=true&amp;characterEncoding=UTF-8</property>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
@@ -15,5 +15,7 @@
 		<!-- thread的配置用于getCurrentSession方式打开会话 -->
 		<property name="hibernate.current_session_context_class">thread</property>
 
+		<mapping resource="com/aaa/entity/Students.hbm.xml"/>
+		<mapping resource="com/aaa/entity/Users.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>
