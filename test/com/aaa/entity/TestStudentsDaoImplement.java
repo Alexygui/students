@@ -16,4 +16,10 @@ public class TestStudentsDaoImplement {
 			System.out.println(studentsList.get(i));
 		}
 	}
+	
+//	@Test
+//	public void testGetNewSid() {
+//		StudentsDaoImplement studentsDaoImplement = new StudentsDaoImplement();
+//		System.out.println(studentsDaoImplement.getNewSid());
+//	}
 }

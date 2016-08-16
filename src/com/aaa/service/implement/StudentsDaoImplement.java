@@ -54,6 +54,7 @@ public class StudentsDaoImplement implements StudentsDao{
 		return false;
 	}
 
+	//删除学生的方法
 	@Override
 	public boolean deleteStudents(String sid) {
 		Transaction transaction = null;
@@ -76,5 +77,43 @@ public class StudentsDaoImplement implements StudentsDao{
 			}
 		}
 	}
-
+	
+	//生成学生的学号
+	private String getNewSid() {
+		Transaction transaction = null;
+		String hql = "";
+		String sid = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			transaction = session.beginTransaction();
+			//获得当前学生的最大编号
+			hql = "select max(sid) from Students ";
+			Query query = session.createQuery(hql);
+			sid = (String) query.uniqueResult();//获得返回的唯一对象，转为String类型
+			if(null == sid || "".equals(sid)) {
+				//设定默认最大值
+				sid = "S0000001";
+			} else {
+				String temp = sid.substring(1);//取学号的后七位字符
+				int tempInt = Integer.parseInt(temp);//将学号的后七位字符转成数字
+				tempInt++;
+				temp = String.valueOf(tempInt);//还原成字符串
+				int length = temp.length();
+				//将字符串凑够七位数
+				for(int i= 0; i< 7-length; i++ ) {
+					temp = "0" + temp;
+				}
+				sid = "S" + temp;
+			}
+			transaction.commit();
+			return sid;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return sid;
+		} finally {
+			if(transaction != null) {
+				transaction = null;
+			}
+		}		
+	}
 }
