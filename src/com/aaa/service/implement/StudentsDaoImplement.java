@@ -56,7 +56,25 @@ public class StudentsDaoImplement implements StudentsDao{
 
 	@Override
 	public boolean deleteStudents(String sid) {
-		return false;
+		Transaction transaction = null;
+//		String hql = "";
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			transaction = session.beginTransaction();
+			//用hibernate的get方法取得对应的Students对象并删除
+			Students student = (Students) session.get(Students.class, sid);
+			session.delete(student);
+			transaction.commit();
+			return true;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			transaction.commit();
+			return false;
+		} finally {
+			if(transaction != null) {
+				transaction = null;
+			}
+		}
 	}
 
 }

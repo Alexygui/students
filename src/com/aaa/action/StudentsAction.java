@@ -20,4 +20,12 @@ public class StudentsAction extends SuperAction{
 		}
 		return "query_success";
 	}
+	
+	//删除学生的方法
+	public String delete() {
+		StudentsDao studentsDao = new StudentsDaoImplement();
+		String sid = request.getParameter("sid");
+		studentsDao.deleteStudents(sid);//调用StudentsDao对象的deleteStudents方法
+		return "delete_success";
+	}
 }

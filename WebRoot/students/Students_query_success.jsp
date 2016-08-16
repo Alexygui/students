@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="tips">
 	<div id="buttonGroup">
 		<div class="button" onmouseout="this.style.backgroundColor='';this.style.fontWeight='normal'" onmouseover="this.style.backgroundColor='#77D1F6';this.style.fontWeight='bold'">
-			<a href="<%=path%>/students/Students_add.jsp">添加学生</a>
+			<a href="<%=basePath%>/students/Students_add.jsp">添加学生</a>
 		</div>
 		<div class="button" onmouseout="this.style.backgroundColor='';this.style.fontWeight='normal'" onmouseover="this.style.backgroundColor='#77D1F6';this.style.fontWeight='bold'">
 			<a>查找学生</a>
@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td><s:property value="#stu.gender"/></td>
 		<td><s:date name="#stu.birthday" format="yyyy年MM月dd日"/></td>
 		<td><s:property value="#stu.address"/></td>
-		<td><a href="#">删除</a></td>
+		<td><a href="<%=basePath%>students/Students_delete.action?sid=<s:property value="#stu.sid"/>" onclick="javascript: return confirm('真的要删除吗？');">删除</a></td>
 	</tr>
 	</s:iterator>
 	<!-- 遍历结束 -->
