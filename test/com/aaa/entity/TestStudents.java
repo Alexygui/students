@@ -24,15 +24,15 @@ public class TestStudents {
 		
 		//创建配置对象
 		Configuration configuration = new Configuration().configure(); 
-		//创建sessionFactory
-		SessionFactory sessionFactory = configuration.buildSessionFactory(new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build()); 
-		//创建session对象
-		Session session = sessionFactory.getCurrentSession();
+//		//创建sessionFactory
+//		SessionFactory sessionFactory = configuration.buildSessionFactory(new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build()); 
+//		//创建session对象
+//		Session session = sessionFactory.getCurrentSession();
 		//创建SchemaExport对象
 		SchemaExport schemaExport = new SchemaExport(configuration);
 		
 		schemaExport.create(true, true);
-		sessionFactory.close();
+//		sessionFactory.close();
 	}
 	
 	//添加测试数据
