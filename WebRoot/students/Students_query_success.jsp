@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8" %>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -113,14 +113,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</tr>
 	
 	<!-- 遍历开始 -->
+	<!-- value中的值用ognl表达式，struts2中的值栈分对象栈和上下文栈，session中的值在上下文栈，所以用#取得上下文中的值 -->
 	<s:iterator value="#session.students_list" var="stu">
 	<tr class="list">
 		<td><s:property value="#stu.sid"/></td>
-		<td><a href="<%=path%>/students/Students_modify.action?sid=<s:property value="#stu.sid"/>"><s:property value="#stu.sname"/></a></td>
+		<td><s:property value="#stu.name"/></td>
 		<td><s:property value="#stu.gender"/></td>
 		<td><s:date name="#stu.birthday" format="yyyy年MM月dd日"/></td>
 		<td><s:property value="#stu.address"/></td>
-		<td><a href="<%=path%>/students/Students_delete.action?sid=<s:property value="#stu.sid"/>" onclick="javascript: return confirm('真的要删除吗？');">删除</a></td>
+		<td><a href="#">删除</a></td>
 	</tr>
 	</s:iterator>
 	<!-- 遍历结束 -->
