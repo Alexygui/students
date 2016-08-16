@@ -60,4 +60,23 @@ public class StudentsAction extends SuperAction{
 		return "modify_success";
 		
 	}
+	
+	//保存修改后的学生信息动作
+	public String save() {
+		Students student = new Students();
+		StudentsDao studentsDao = new StudentsDaoImplement();
+		student.setSid(request.getParameter("sid"));
+		student.setName(request.getParameter("sname"));
+		student.setGender(request.getParameter("gender"));
+		//添加页面中写的日期
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			student.setBirthday(sdf.parse(request.getParameter("birthday")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		student.setAddress(request.getParameter("address"));
+		studentsDao.updateStudents(student);
+		return "save_success";
+	}
 }

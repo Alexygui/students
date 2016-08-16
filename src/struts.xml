@@ -25,6 +25,7 @@
 			<result name="delete_success" type="chain">Students_query</result>
 			<result name="add_success">/students/Students_add_success.jsp</result>
 			<result name="modify_success">/students/Students_modify.jsp</result>
+			<result name="save_success">/students/Students_modify_success.jsp</result>
 		</action>
 	</package>
 

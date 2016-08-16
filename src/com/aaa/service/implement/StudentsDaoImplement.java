@@ -83,9 +83,25 @@ public class StudentsDaoImplement implements StudentsDao{
 		}
 	}
 
+	//更新修改的学生信息
 	@Override
 	public boolean updateStudents(Students student) {
-		return false;
+		Transaction transaction = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			transaction = session.beginTransaction();
+			session.update(student);
+			transaction.commit();
+			return true;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			transaction.rollback();
+			return false;
+		}finally {
+			if(transaction != null) {
+				transaction = null;
+			}
+		}
 	}
 
 	//删除学生的方法
