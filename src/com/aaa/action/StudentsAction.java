@@ -1,6 +1,9 @@
 package com.aaa.action;
 
+import java.util.Date;
 import java.util.List;
+
+import org.hibernate.Session;
 
 import com.aaa.entity.Students;
 import com.aaa.service.StudentsDao;
@@ -27,5 +30,17 @@ public class StudentsAction extends SuperAction{
 		String sid = request.getParameter("sid");
 		studentsDao.deleteStudents(sid);//调用StudentsDao对象的deleteStudents方法
 		return "delete_success";
+	}
+	
+	//添加学生
+	public String add() {
+		StudentsDao studentsDao = new StudentsDaoImplement();
+		Students student = new Students();
+		student.setName(request.getParameter("sname"));
+		student.setGender(request.getParameter("gender"));
+		student.setBirthday(new Date());
+		student.setAddress(request.getParameter("address"));
+		studentsDao.addStudents(student);
+		return "add_success";
 	}
 }

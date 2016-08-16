@@ -44,6 +44,7 @@ public class StudentsDaoImplement implements StudentsDao{
 		return null;
 	}
 
+	//添加学生的方法
 	@Override
 	public boolean addStudents(Students student) {
 		student.setSid(getNewSid());//设置学生的学号
