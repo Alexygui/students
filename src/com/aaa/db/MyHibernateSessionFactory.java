@@ -8,8 +8,7 @@ public class MyHibernateSessionFactory {
 	private static SessionFactory sessionFactory;//会话工厂属性
 
 	//单例模式下，构造器为private
-	private MyHibernateSessionFactory() {
-	}
+	private MyHibernateSessionFactory() {}
 	//静态方法创建单例的sessionFactory
 	public static SessionFactory getSessionFactory() {
 		if(sessionFactory == null) {
