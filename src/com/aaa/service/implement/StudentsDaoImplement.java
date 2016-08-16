@@ -38,10 +38,27 @@ public class StudentsDaoImplement implements StudentsDao{
 			}
 		}
 	}
-
+	
+	//根据学生的sid查询学生信息
 	@Override
 	public Students queryStudentsBySid(String sid) {
-		return null;
+			Transaction transaction = null;
+			Students student = null;
+			try {
+				Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+				transaction = session.beginTransaction();
+				student = (Students) session.get(Students.class, sid);
+				transaction.commit();
+				return student;
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				transaction.commit();
+				return student;
+			} finally {
+				if(transaction != null) {
+					transaction = null;
+				}
+			}
 	}
 
 	//添加学生的方法

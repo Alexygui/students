@@ -1,9 +1,8 @@
 package com.aaa.action;
 
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
-
-import org.hibernate.Session;
 
 import com.aaa.entity.Students;
 import com.aaa.service.StudentsDao;
@@ -38,9 +37,27 @@ public class StudentsAction extends SuperAction{
 		Students student = new Students();
 		student.setName(request.getParameter("sname"));
 		student.setGender(request.getParameter("gender"));
-		student.setBirthday(new Date());
+//		student.setBirthday(new Date());
+		//添加页面中写的日期
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			student.setBirthday(sdf.parse(request.getParameter("birthday")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		student.setAddress(request.getParameter("address"));
 		studentsDao.addStudents(student);
 		return "add_success";
+	}
+	
+	//修改学生资料的动作
+	public String modify() {
+		//获得传递的学生的编号
+		String sid = request.getParameter("sid");
+		StudentsDao studentsDao = new StudentsDaoImplement();
+		Students student = studentsDao.queryStudentsBySid(sid);
+		session.setAttribute("modify_students", student);
+		return "modify_success";
+		
 	}
 }

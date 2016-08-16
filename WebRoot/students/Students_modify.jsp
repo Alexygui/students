@@ -92,20 +92,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <br>
 <br>
 
-<form name="modifyForm" action="<%=path%>/students/Students_save.action" method="post">
+<form name="modifyForm" action="<%=basePath%>students/Students_save.action" method="post">
 <table width="400" >
   <tr>
     <td width="30%">学号：</td>
-    <td><input type="text" name="sid" value='<s:property value="#session.modify_students.sid"/>'  readonly="readonly"/></td>
+    <td><input type="text" name="sid" value='<s:property value="#session.modify_students.sid"/>' readonly="readonly"/></td>
   </tr>
   <tr>
     <td width="30%">姓名：</td>
-    <td><input type="text" name="sname" value='<s:property value="#session.modify_students.sname"/>'/></td>
+    <td><input type="text" name="sname" value='<s:property value="#session.modify_students.name"/>'/></td>
   </tr>
   <tr>
     <td>性别：</td>
     <td>
-      <s:if test='%{#session.modify_students.gender=="男"}'>
+    <!-- struts2规定字符串必须用双引号引用，所以test后用单引号，%表示ognl语句的引用 -->
+    <s:if test='%{#session.modify_students.gender == "男"}'>
          <input type="radio" name="gender" value="男" checked="checked"/>男
          <input type="radio" name="gender" value="女"/>女
       </s:if>
@@ -119,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <td>出生日期：</td>
     <td><input name="birthday" type="text" id="control_date" size="20"
       maxlength="10" onclick="new Calendar().show(this);" readonly="readonly" 
-      value="<s:date name="#session.modify_students.birthday" format="yyyy-MM-dd"/>"
+      value='<s:date name="#session.modify_students.birthday" format="yyyy-MM-dd"/>'
       />
     </td>
   </tr>
