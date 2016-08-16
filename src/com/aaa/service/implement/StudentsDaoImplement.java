@@ -46,7 +46,23 @@ public class StudentsDaoImplement implements StudentsDao{
 
 	@Override
 	public boolean addStudents(Students student) {
-		return false;
+		student.setSid(getNewSid());//设置学生的学号
+		Transaction transaction = null;
+		try {
+			Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+			transaction = session.beginTransaction();
+			session.save(student);
+			transaction.commit();
+			return true;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			transaction.rollback();
+			return false;
+		} finally {
+			if(transaction != null) {
+				transaction = null;
+			}
+		}
 	}
 
 	@Override
