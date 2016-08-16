@@ -1,4 +1,7 @@
 package com.aaa.entity;
+
+import java.util.Date;
+
 /**
  * 学生实体类
  */
@@ -6,11 +9,11 @@ public class Students {
 	private String sid;//学号
 	private String name;//姓名
 	private String gender;//性别
-	private String birthday;//生日
+	private Date birthday;//生日
 	private String address;//地址
 	public Students() {
 	}
-	public Students(String sid, String name, String gender, String birthday, String address) {
+	public Students(String sid, String name, String gender, Date birthday, String address) {
 		this.sid = sid;
 		this.name = name;
 		this.gender = gender;
@@ -35,10 +38,10 @@ public class Students {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 	public String getAddress() {
